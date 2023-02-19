@@ -9,7 +9,7 @@ Simple Django app with [Stripe API](http://stripe.com/docs)
 ```
 git clone https://github.com/SimonLen/payment-service.git
 ```
-Переходим в папку Django-проекта, создаем и активируем виртуальное окружение. Команды приведенные ниже предназначены для macOS, как настроить окружение в других операционных системах можно узнать [здесь](https://pythonist.ru/virtualnye-okruzheniya-python-i-instrumenty-dlya-upravleniya-imi/)
+Переходим в папку Django-проекта, создаем и активируем виртуальное окружение. Команды приведенные ниже предназначены для macOS. Как настроить окружение в других операционных системах можно узнать [здесь](https://pythonist.ru/virtualnye-okruzheniya-python-i-instrumenty-dlya-upravleniya-imi/).
 Предполагается, что на вашем компьютере уже установлен Python. Если нет, то вот [ссылка на скачивание Python](https://www.python.org/downloads/).
 ```
 cd payment-service/PaymentApp
