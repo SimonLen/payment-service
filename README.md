@@ -21,6 +21,18 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
+В текущей директории создаем файл `.env` и сохряняем в нем три переменные:
+```
+DJANGO_SECRET_KEY = ''
+STRIPE_PUBLIC_KEY = ''
+STRIPE_SECRET_KEY = ''
+```
+Stripe Publishable key и Secret key получаем [здесь](https://dashboard.stripe.com/apikeys). А DJANGO_SECRET_KEY генерируем следующим образом:
+```
+django-admin shell
+from django.core.management.utils import get_random_secret_key
+get_random_secret_key()
+```
 Запускаем тестовый сервер (на http://127.0.0.1:8000):
 ```
 python manage.py runserver
