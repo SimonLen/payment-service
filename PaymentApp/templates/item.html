@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://js.stripe.com/v3/"></script>
+    {% block title %}
+      <title>Buy {{ item }}</title>
+    {% endblock title %}
+  </head>
+  <body>
+    {% block content %}
+
+      <h1>{{ item.name }}</h1>
+      <p>{{ item.description }}</p>
+      <p>$ {{ item.get_display_price }}</p>
+
+      {% csrf_token %}
+
+      <button type="button" id="checkout-button">buy</button>
+
+      <script type="text/javascript">
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      var stripe = Stripe("{{ STRIPE_PUBLIC_KEY }}");
+      var checkoutButton = document.getElementById("checkout-button");
+      checkoutButton.addEventListener("click", function () {
+        fetch("{% url 'buy' item.id %}", {
+          method: "POST",
+          headers: {
+              'X-CSRFToken': csrftoken
+          }
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+          })
+          .then(function (result) {
+            if (result.error) {
+              alert(result.error.message);
+            }
+          })
+          .catch(function (error) {
+            console.error("Error:", error);
+          });
+      });
+
+      </script>
+
+    {% endblock content %}
+  </body>
+</html>
